@@ -25,7 +25,7 @@ class ParametersController < ApplicationController
   end
 
   def url_segment_guess
-    @user_guess = params["this_is_another_key"].to_i
+    @user_guess = params["boop"].to_i
     winning_number = 36
     if winning_number < @user_guess
       @answer_message = "too high"
@@ -33,8 +33,25 @@ class ParametersController < ApplicationController
       @answer_message = "too low"
     else
       @answer_message = "right on the money"
-    end    
+  end    
 
+  def form_show
 
   end
+
+  def form_send
+    @user_guess = params["form_message"].to_i
+    winning_number = 36
+    if winning_number < @user_guess
+      @answer_message = "too high"
+    elsif winning_number > @user_guess
+      @answer_message = "too low"
+    else
+      @answer_message = "right on the money"
+    end
+
+    render 'form_show.html.erb'
+  end
+
+
 end
